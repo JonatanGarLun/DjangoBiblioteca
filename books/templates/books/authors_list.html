@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Author list</title>
+</head>
+<body>
+
+    {% if latest_authors %}
+        <ul>
+            {% for author in latest_authors %}
+                <li><a href="{% url 'books:author_detail' %}"></a> {{ author.author_text }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <h2>Sorry, there aren´t any available authors at the moment</h2>
+    {% endif %}
+
+</body>
+</html>
