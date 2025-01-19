@@ -2,9 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Lista de libros</title>
 </head>
 <body>
+
+    {% if latest_books %}
+        <ul>
+            {% for book in latest_books %}
+                <li><a href="{% url 'books:book_details/{{ book_id }}' %}"> {{ book.book_text }}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <h2>Sorry, there aren´t any available authors at the moment!</h2>
+    {% endif %}
+
+    <h3>Link to our <a href="{% url 'books:authorlist' %}">author list</a></h3>
 
 </body>
 </html>

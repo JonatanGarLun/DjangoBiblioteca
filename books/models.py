@@ -1,5 +1,7 @@
+import datetime
+
 from django.db import models
-from django.db.models import ManyToOneRel
+from django.utils import timezone
 
 
 # Create your models here.
@@ -14,6 +16,8 @@ class Author(models.Model):
 
 class Genre(models.Model):
     name = models.CharField(max_length=50, unique=True)
+    def __str__(self):
+        return self.name
 
 class Book(models.Model):
     title = models.CharField(max_length=100)
@@ -21,3 +25,9 @@ class Book(models.Model):
     genre = models.ForeignKey(Genre, on_delete=models.CASCADE)
     publish_date = models.DateField()
     summary = models.TextField()
+
+    def __str__(self):
+        return self.title
+
+    def was_published_recently(self):
+        return self.publish_date >= timezone.now() - datetime.timedelta(days=1)
