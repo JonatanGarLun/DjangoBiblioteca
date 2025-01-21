@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 
-from books.models import Book, Author
+from books.models import Book, Author, Genre
 
 
 # Create your views here.
@@ -20,3 +20,10 @@ def authorlist(request):
 def authordetails(request, author_id):
     author = get_object_or_404(Author, pk=author_id)
     return render(request, template_name="author_details.html", context={"author":author})
+
+def genrelist(request):
+    latest_genres = Genre.objects.all()
+    return render(request, template_name="genre_list.html", context={"latest_genres":latest_genres})
+
+def authorform(request, author_id):
+    author = get_object_or_404(Author, pk=author_id)

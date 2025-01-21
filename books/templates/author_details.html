@@ -5,6 +5,14 @@
     <title>Detalles de autor</title>
 </head>
 <body>
-    {{ author }}
+    <h1 style="font-family: 'DejaVu Sans Mono'">Autores del momento</h1>
+    <h2 style="font-family: cursive">{{ author.first_name }} {{ author.last_name }}</h2>
+
+    <ul style="list-style-type: square">
+        <li><strong>Nombre del autor</strong>: {{ author.first_name }}</li>
+        <li><strong>Apellido del autor</strong>: {{ author.last_name}}</li>
+        <li><strong>Fecha de nacimiento</strong>: {{ author.birth_date }}</li>
+    </ul>
+
 </body>
 </html>
