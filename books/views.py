@@ -25,5 +25,7 @@ def genrelist(request):
     latest_genres = Genre.objects.all()
     return render(request, template_name="genre_list.html", context={"latest_genres":latest_genres})
 
-def authorform(request, author_id):
-    author = get_object_or_404(Author, pk=author_id)
+def login():
+    pass
+def logout():
+    pass

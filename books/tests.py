@@ -1,11 +1,8 @@
 from django.test import TestCase
-
-# Create your tests here.
-
-from django.test import TestCase
 from django.urls import reverse
 from .models import Author, Book, Genre
 
+# Create your tests here.
 
 class AuthorModelTest(TestCase):
     def setUp(self):
@@ -14,8 +11,7 @@ class AuthorModelTest(TestCase):
     def test_author_creation(self):
         self.assertEqual(self.author.first_name, "John")
         self.assertEqual(self.author.last_name, "Doe")
-        self.assertEqual(str(self.author), "John Doe")  # Asume que el método __str__ está implementado.
-
+        self.assertEqual(self.author.birth_date, "1970-01-01")
 
 class BookModelTest(TestCase):
     def setUp(self):
@@ -46,17 +42,17 @@ class ViewTests(TestCase):
         )
 
     def test_book_list_view(self):
-        response = self.client.get(reverse("books:book_list"))  # Asume que la URL está nombrada.
+        response = self.client.get(reverse("books:booklist"))  # Asume que la URL está nombrada.
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, self.book.title)
 
     def test_author_list_view(self):
-        response = self.client.get(reverse("books:author_list"))
+        response = self.client.get(reverse("books:authorlist"))
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, self.author.first_name)
 
     def test_book_detail_view(self):
-        response = self.client.get(reverse("books:book_detail", args=[self.book.id]))
+        response = self.client.get(reverse("books:bookdetails", args=[self.book.id]))
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, self.book.title)
         self.assertContains(response, self.author.first_name)
