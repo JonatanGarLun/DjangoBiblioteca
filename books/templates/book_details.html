@@ -1,13 +1,25 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Detalles del libro</title>
+    <title>Detalles de libro</title>
 </head>
 <body>
-    <h1>{{ book.title }}</h1>
+    <h1 style="font-family: 'DejaVu Sans Mono'">Libros del momento</h1>
+    <h2 style="font-family: cursive">{{ book.title }}, escrito por {{ book.author }}</h2>
 
-    <h2></h2>
+
+    <h3 style="font-family: Hack">Características del libro:</h3>
+    <ul style="list-style-type: square">
+        <li><strong>Nombre del libro</strong>: {{ book.title }}</li>
+        <li><strong>Nombre del autor</strong>: <a href="{% url 'books:authordetails' book.id %}">{{ book.author }}</a></li>
+        <li><strong>Género del libro</strong>: {{ book.genre }}</li>
+        <li><strong>Fecha de publicación</strong>: {{ book.publish_date }}</li>
+        <li><strong>Sinopsis</strong>: {{ book.summary }}</li>
+
+
+    </ul>
 
 </body>
 </html>
